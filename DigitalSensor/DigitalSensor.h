@@ -6,7 +6,7 @@ class DigitalSensor {
         DigitalSensor(int pin);
 
         int pin;
-        bool state;
+        bool close;
 
         void updateSensor();
 }
