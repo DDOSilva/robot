@@ -5,6 +5,7 @@ class DigitalSensor {
     public:
         DigitalSensor(int pin);
 
+        int rawRead;
         int pin;
         bool close;
 
