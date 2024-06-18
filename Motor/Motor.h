@@ -1,5 +1,5 @@
 #ifndef MOTOR_H
-#define MOTOR_h
+#define MOTOR_H
 
 struct MotorConfig {
     MotorConfig(int pwmPin, int inPin1, int inPin2, int cSpeed, int channelPin);
