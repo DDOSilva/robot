@@ -41,6 +41,14 @@ void Robot::print() {
     Serial.print("\t");
 }
 
+void Robot::update() {
+
+    this->uStart.uUpdate();
+    this->readSensors();
+    this->vision.updatePosition(this->frontSensor, this->rightSensor, this->leftSensor, this->fullRightSensor, this->fullLeftSensor);
+    this->fight();
+}
+
 void Robot::fight () {
     bool initStratFinished = false;
 
