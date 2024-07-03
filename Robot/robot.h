@@ -12,7 +12,7 @@
 
 using namespace std;
 
-//defining every pin
+// defining every pin 
 #define FRONT_SENSOR_PIN 35
 #define FULL_RIGHT_SENSOR_PIN 25
 #define FULL_LEFT_SENSOR_PIN 13
@@ -39,21 +39,23 @@ using namespace std;
 
 #define STDBY 5
 
+// creates integer constants
 namespace robotState {
     enum states {
-        AWAITING_START,
-        INIT_STRAT,
-        AUTO_STRAT,
-        STOPPED
+        AWAITING_START,     // 0
+        INIT_STRAT,         // 1
+        AUTO_STRAT,         // 2
+        STOPPED             // 3
     };
-}
+};
 
 class Robot {
     public:
         string name = "robot";
-        int ledPin = 13;
+        int ledPin = 13;                        
         robotState::states robot_state;
 
+        // creates all objects needed
         Microstarter uStart;
         DigitalSensor frontSensor;
         DigitalSensor leftSensor;
@@ -67,10 +69,10 @@ class Robot {
         InitialStrat* initStrategy;
         AutoStrat autoStrategy;
 
-        void readSensors();
-        void update();
-        void print();
-        void fight();
+        void readSensors();         // read every robot's sensor
+        void update();              // general update
+        void print();               // will print the information needed 
+        void fight();               // controls every robot's state
 
         Robot();
 

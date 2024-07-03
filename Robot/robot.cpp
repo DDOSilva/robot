@@ -1,7 +1,9 @@
 #include "robot.h"
 #include <Arduino.h>
 
-Robot::Robot() : frontSensor(FRONT_SENSOR_PIN),
+
+
+Robot::Robot() : frontSensor(FRONT_SENSOR_PIN),                 // initializes everything before entering the "body"
                     leftSensor(LEFT_SENSOR_PIN),
                     rightSensor(RIGHT_SENSOR_PIN),
                     fullLeftSensor(FULL_LEFT_SENSOR_PIN),
@@ -15,6 +17,8 @@ Robot::Robot() : frontSensor(FRONT_SENSOR_PIN),
     this->robot_state = robotState::AWAITING_START;
 }
 
+
+// updates every sensor
 void Robot::readSensors() {
     this-> frontSensor.updateSensor();
     this-> leftSensor.updateSensor();
@@ -23,6 +27,8 @@ void Robot::readSensors() {
     this-> fullRightSensor.updateSensor();
 }
 
+
+// general print. prints info about every component
 void Robot::print() {
     //microstarter
     Serial.print(this->uStart.uUpdate);
@@ -41,6 +47,7 @@ void Robot::print() {
     Serial.print("\t");
 }
 
+// general updates. updates the robot and all the classes needed
 void Robot::update() {
 
     this->uStart.uUpdate();
@@ -49,18 +56,19 @@ void Robot::update() {
     this->fight();
 }
 
+
 void Robot::fight () {
-    bool initStratFinished = false;
+    bool initStratFinished = false;     // atributes false to initStratFinished
 
     switch (this->robot_state) {
-        case robotState::AWAITING_START:
+        case robotState::AWAITING_START:                        // robot is turned on and awaiting a signal to start moving 
             if (this->uStart.uState == Start_state::START) {
                 this->robot_state = robotState::INIT_STRAT;
                 this->initStrategy = get_SelectedStrategy(STRATEGY_PIN_A, STRATEGY_PIN_B, STRATEGY_PIN_C);
             }
             break;
         
-        case robotState::INIT_STRAT:
+        case robotState::INIT_STRAT:                            // robot is executing initial strategy
             initStratFinished = this->initStrategy->update(this->leftMotor, this->rightMotor);
             if (initStratFinished)
                 this->robot_state = robotState::AUTO_STRAT;
@@ -68,20 +76,20 @@ void Robot::fight () {
                 this->robot_state = robotState::STOPPED;
             break;
 
-        case robotState::AUTO_STRAT:
+        case robotState::AUTO_STRAT:                            // initial strategy ended, robot must execute auto strategy
             this->autoStrategy.updateMotor(this->vision, this->leftMotor, this->rightMotor);
             
             if(this->uStart.uState == Start_state::STOP)
                 this->robot_state = robotState::STOPPED;
             break;
         
-        case robotState::STOPPED:
-            leftMotor.setSpeed(0);
-            rightMotor.setSpeed(0);
+        case robotState::STOPPED:                               // robot receives signal to stop by the microstarter
+            leftMotor.setSpeed(0);                              // set left motor power as 0%
+            rightMotor.setSpeed(0);                             // set right motor power as 0%
             break;
 
         default:
-            Serial.println("UNKNOWN BEHAVIOR");
+            Serial.println("UNKNOWN BEHAVIOR");                 // error
     }
 }
 
