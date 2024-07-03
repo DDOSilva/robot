@@ -8,6 +8,8 @@ Vision::Vision() {}
 void Vision::updatePosition (DigitalSensor &front_sensor, DigitalSensor &right_sensor, DigitalSensor &left_sensor,
 DigitalSensor &full_right_sensor, DigitalSensor &full_left_sensor) {
     
+    // atributes all enemy positions according to what all 5 sensors are reading
+    // SEARCH_LEFT and SEARCH_RIGHT are being used to literally search for the enemy robot if it's not being seen by any sensors
     if (this->front_sensor.close) {
         this->enemy_position = EnemyPosition::FRONT;
         return;
@@ -33,4 +35,4 @@ DigitalSensor &full_right_sensor, DigitalSensor &full_left_sensor) {
     } else if (this->latest_enemy_position = EnemyPosition::LEFT) {
         this->enemy_position = EnemyPosition::SEARCH_LEFT;
     }
-}
+};
