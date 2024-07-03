@@ -5,11 +5,11 @@ class DigitalSensor {
     public:
         DigitalSensor(int pin);
 
-        int rawRead;
-        int pin;
-        bool close;
+        int rawRead;            // receives pin value 
+        int pin;                // receives value in constructor
+        bool close;             // rawRead value converted to binary, checks if the sensor is "seeing" something. 
 
-        void updateSensor();
+        void updateSensor();    // reads pin and update rawRead and close values
 };
 
 #endif
