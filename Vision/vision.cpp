@@ -1,5 +1,4 @@
 #include "vision.h"
-
 #include <iostream>
 #include <Arduino.h>
 
