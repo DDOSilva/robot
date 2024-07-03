@@ -10,6 +10,6 @@ class DigitalSensor {
         bool close;
 
         void updateSensor();
-}
+};
 
 #endif

@@ -17,5 +17,5 @@ class Motor {
         int speed;
         MotorConfig config;
         void setSpeed(int speed);
-}
+};
 #endif

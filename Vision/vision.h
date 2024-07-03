@@ -24,6 +24,6 @@ class Vision {
         EnemyPosition::Position latest_enemy_position;
         void updatePosition(DigitalSensor &front_sensor, DigitalSensor &right_sensor, DigitalSensor &left_sensor,
         DigitalSensor &full_right_sensor, DigitalSensor &full_left_sensor);
-}
+};
 
 #endif

@@ -14,5 +14,5 @@ class Microstarter {
         int uPin;
         Start_state::states uState;
         void uUpdate();
-}
+};
 #endif

@@ -74,6 +74,6 @@ class Robot {
 
         Robot();
 
-}
+};
 
 #endif

@@ -17,7 +17,7 @@ class Moveset {
         bool finished;
         bool update(Motor &leftMotor, Motor &rightMotor);
         Moveset(int motorPowerL, motorPowerR, msTime);
-}
+};
 
 class InitialStrat {
     public:
@@ -26,14 +26,14 @@ class InitialStrat {
         bool stratFinished;
         bool update(Motor &leftMotor, Motor &rightMotor);
         InitialStrat(std::list<Moveset> moves);
-}
+};
 
 class AutoStrat {
     public:
         int motorPowerL;
         int motorPowerR;
         void updateMotor(Vision &vision, Motor &leftMotor, Motor &rightMotor);
-}
+};
 
 InitialStrat *get_selectedStrategy(int pinA, int pinB, int pinC);
 
