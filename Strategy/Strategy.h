@@ -9,14 +9,18 @@
 
 class Moveset {
     public:
-        int motorPowerL;
-        int motorPowerR;
-        int msTime;
-        int msStartTime;
-        bool started;
-        bool finished;
+        int motorPowerL;        // defines left motor power
+        int motorPowerR;        // defines right motor power
+        int msTime;             // duration of motors operation in ms
+        int msStartTime;        // starts with 0. it's used to monitorate program's execution time
+        bool started;           // used to set program's start
+        bool finished;          // used to set program's end
+
+        // utilizes 2 Motor objects
         bool update(Motor &leftMotor, Motor &rightMotor);
-        Moveset(int motorPowerL, motorPowerR, msTime);
+
+        // recieves power and time (in ms) that motor's will operate, defining a movement and its duration
+        Moveset(int motorPowerL, motorPowerR, msTime);      
 };
 
 class InitialStrat {
@@ -25,13 +29,17 @@ class InitialStrat {
         Moveset &currentMove;
         bool stratFinished;
         bool update(Motor &leftMotor, Motor &rightMotor);
-        InitialStrat(std::list<Moveset> moves);
+
+        // recieves a list that will define the robot's moves based on the selected strategy
+        InitialStrat(std::list<Moveset> moves);             
 };
 
 class AutoStrat {
     public:
         int motorPowerL;
         int motorPowerR;
+
+        // recognizes enemy's positions and determines "what the robot needs to do"
         void updateMotor(Vision &vision, Motor &leftMotor, Motor &rightMotor);
 };
 
