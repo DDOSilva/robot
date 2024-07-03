@@ -7,8 +7,7 @@ namespace Start_state {
         START,              // 0
         STOP                // 1
     };
-}
-
+};
 class Microstarter {
     public:
         Microstarter(int uPin); 
