@@ -19,7 +19,7 @@ Motor::Motor (int pwmPin, int inPin1, int inPin2, int cSpeed, int channelPin) {}
         // converts pwm value from a -100 to 100 range to a -255 to 255 range.
         int pwm = (int)(this->maxSpeed / (100.0) * 255.0 *((float)abs(fixSpeed) / 100);
 
-        // conditions that will check rotation's direction 
+        // conditions that will define rotation's directions 
         if (fixSpeed < 0 && fixSpeed >= -100) {             // if value is negative, rotation will be counterclockwise
             digitalWrite(this->config.inPin1, 1);
             digitalWrite(this->config.inPin2, 0);           // this pin configuration will define the direction
