@@ -71,7 +71,7 @@ class Robot {
 
         void readSensors();         // read every robot's sensor
         void update();              // general update
-        void print();               // will print the information needed 
+        void print();               // general print
         void fight();               // controls every robot's state
 
         Robot();

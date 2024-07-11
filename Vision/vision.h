@@ -5,6 +5,7 @@
 
 #define D_LIMIT_CM 20               // sets a distance limit of 20cm for the sensors
 
+/*
 // creates integer constants
 namespace EnemyPosition {
     enum position {         // makes the representation of enemy position easier
@@ -16,7 +17,7 @@ namespace EnemyPosition {
         SEARCH_LEFT,        // 5
         SEARCH_RIGHT        // 6
     };
-};
+}
 
 class Vision {
     public:
@@ -28,6 +29,32 @@ class Vision {
         // uses 5 DigitalSensor objects, named after it's positions in the actual robot
         void updatePosition(DigitalSensor &front_sensor, DigitalSensor &right_sensor, DigitalSensor &left_sensor,
         DigitalSensor &full_right_sensor, DigitalSensor &full_left_sensor);
+};
+
+#endif
+
+*/
+
+namespace EnemyPosition {
+    enum position {
+        FRONT,
+        LEFT,
+        RIGHT,
+        FULL_LEFT,
+        FULL_RIGHT,
+        SEARCH_LEFT,
+        SEARCH_RIGHT
+    };
+}
+
+class Vision {
+    public:
+        EnemyPosition::position enemy_position;
+        EnemyPosition::position latest_enemy_position;
+
+        void updatePosition(DigitalSensor &front_left_sensor, DigitalSensor &front_right_sensor, 
+        DigitalSensor &left_sensor, DigitalSensor &right_sensor);
+
 };
 
 #endif
